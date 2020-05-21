@@ -1,1 +1,1 @@
-# blazor-rock-paper-scissors
+# Rock, Paper, Scissors! in Blazor WebAssembly
