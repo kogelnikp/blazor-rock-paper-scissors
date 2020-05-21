@@ -1,0 +1,21 @@
+<button class="choice-button" @onclick="@TriggerRock"><img src="/images/rock.png" class="choice-button-image" /></button>
+<button class="choice-button" @onclick="@TriggerPaper"><img src="/images/paper.png" class="choice-button-image" /></button>
+<button class="choice-button" @onclick="@TriggerScissors"><img src="/images/scissors.png" class="choice-button-image" /></button>
+
+@code{
+  [ParameterAttribute]
+  public EventCallback<Models.Choice> ChoiceSelected { get; set; }
+
+  public void TriggerRock()
+  {
+    ChoiceSelected.InvokeAsync(Models.Choice.Rock);
+  }
+  public void TriggerPaper()
+  {
+    ChoiceSelected.InvokeAsync(Models.Choice.Paper);
+  }
+  public void TriggerScissors()
+  {
+    ChoiceSelected.InvokeAsync(Models.Choice.Scissors);
+  }
+}

@@ -1,0 +1,43 @@
+@using Models
+
+
+<div class="col col-lg-4 text-center my-auto">
+  <ResultPlayerImage PlayerChoice="Player1Choice" IsWinner="WinningPlayerId == 1" />
+</div>
+<div class="col col-md-2 text-center my-auto">
+  <div id="winning-text">@(WinningPlayer)</div>
+  <div><button @onclick="NewRound">Again!</button></div>
+</div>
+<div class="col col-lg-4 text-center my-auto">
+  <ResultPlayerImage PlayerChoice="Player2Choice" IsWinner="WinningPlayerId == 2"/>
+</div>
+
+@code {
+  [Parameter]
+  public Choice Player1Choice { get; set; }
+
+  [Parameter]
+  public Choice Player2Choice { get; set; }
+
+  [Parameter]
+  public int WinningPlayerId { get; set; }
+  
+  [ParameterAttribute]
+  public EventCallback NewRound { get; set; }
+
+  string WinningPlayer {
+    get {
+      switch(WinningPlayerId)
+      {
+        case 0:
+          return "This game ended in a draw!";
+        case 1:
+          return "You won the game!";
+        case 2:
+          return "Your opponent won the game!";
+        default:
+          throw new Exception("There are only two players in this game!");
+      }
+    }
+  }
+}

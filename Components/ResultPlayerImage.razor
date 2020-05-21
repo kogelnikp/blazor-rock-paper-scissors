@@ -1,0 +1,35 @@
+@using Models
+
+<img src="/images/@(ImageName).png" class="choice-button-image @(WinnerClass)" />
+
+
+@code {
+  [Parameter]
+  public Choice PlayerChoice { get; set; }
+
+  [Parameter]
+  public bool IsWinner { get; set; }
+
+  public string ImageName { 
+    get
+    {
+      switch(PlayerChoice)
+      {
+        case Choice.Rock:
+          return "rock";
+        case Choice.Paper:
+          return "paper";
+        case Choice.Scissors:
+          return "scissors";
+        default:
+        throw new Exception("Not a valid choice");
+      }
+    } 
+  }
+
+  public string WinnerClass {
+    get {
+      return IsWinner ? "winner" : "loser";
+    }
+  }
+}
